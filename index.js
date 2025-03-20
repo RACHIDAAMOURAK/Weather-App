@@ -48,7 +48,7 @@ function displayWeatherInfo(data){
     cityDisplay.textContent= city;
     tempDisplay.textContent= `${(temp -273.15).toFixed(2)}°c`;
     humidityDisplay.textContent= ` Humidity:${humidity}%`;
-    humidityDisplay.textContent= description;
+    descDisplay.textContent= description;
     weatherEmoji.textContent= getWeatherEmoji(id);
     
 
@@ -68,28 +68,25 @@ function displayWeatherInfo(data){
     card.appendChild(weatherEmoji);
   
 }
-function  getWeatherEmoji(weatherId){
-    switch(true){
-        case (weatherId>=200 && weatherId <300):
-            return "🌧";
-
-        case (weatherId>=300 && weatherId <400):
-            return"🌧";
-        case (weatherId>=500 && weatherId <600):
-             return "🌧";
-        case (weatherId>=600 && weatherId <700):
-            return "❄";
-         case (weatherId>=700 && weatherId <800):
-             return"🌫";
-        
-        case (weatherId===800):
-             return "☀";
-
-        case (weatherId>=801 && weatherId <810):
-             return "☁";
-        default :"❓";
-        }
+function getWeatherEmoji(weatherId) {
+    if (weatherId >= 200 && weatherId < 300) {
+        return "⛈"; // Orage
+    } else if (weatherId >= 300 && weatherId < 500) {
+        return "🌧"; // Bruine ou pluie légère
+    } else if (weatherId >= 500 && weatherId < 600) {
+        return "🌧"; // Pluie
+    } else if (weatherId >= 600 && weatherId < 700) {
+        return "❄"; // Neige
+    } else if (weatherId >= 700 && weatherId < 800) {
+        return "🌫"; // Brouillard ou brume
+    } else if (weatherId === 800) {
+        return "☀"; // Ciel dégagé
+    } else if (weatherId >= 801 && weatherId < 810) {
+        return "☁"; // Nuageux
+    } else {
+        return "❓"; // Inconnu
     }
+}
     
 function displayError(message){
     const errorDisplay = document.createElement("p");
